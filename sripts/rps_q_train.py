@@ -15,12 +15,10 @@ if __name__ == "__main__":
     n_episodes = 20_000
     start_epsilon = 1.0
     epsilon_decay = start_epsilon / (n_episodes / 2)
-    final_epsilon = 0.0001
-    p_dist = np.array((1,1,1))
-    p_dist = p_dist / sum(p_dist)
-    p_dist = tuple(p_dist)
+    final_epsilon = 0.01
 
-    env = gymnasium.make("gymnasium_env/RPSWorld-v0",opponent_p = p_dist)
+
+    env = gymnasium.make("gymnasium_env/RPSWorld-v0")
     env = gymnasium.wrappers.RecordEpisodeStatistics(env, buffer_length=n_episodes)
     agent = RPSAgent(
         env=env,
